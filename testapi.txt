@@ -16,7 +16,7 @@ curl -X POST https://1t4mx2sx87.execute-api.us-east-1.amazonaws.com/prod/forecas
 }'
 
 
-curl -X POST http://54.81.53.245:11434/api/generate -d '{
+curl -X POST http://18.234.243.5:11434/api/generate -d '{
   "model": "qwen2.5:1.5b",
   "prompt": "Apa itu kecerdasan buatan?",
   "stream": false
