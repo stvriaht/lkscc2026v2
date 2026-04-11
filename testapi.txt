@@ -1,0 +1,23 @@
+
+
+
+curl -X POST https://1t4mx2sx87.execute-api.us-east-1.amazonaws.com/prod/predict \
+-H "Content-Type: application/json" \
+-H "x-api-key: bhDEJ0zLUe3kp8Jl0DQgU4rKBpNZEFGYPrt1eR2e" \
+-d '{
+  "test": "hello"
+}'
+
+curl -X POST https://1t4mx2sx87.execute-api.us-east-1.amazonaws.com/prod/forecasts \
+-H "Content-Type: application/json" \
+-H "x-api-key: bhDEJ0zLUe3kp8Jl0DQgU4rKBpNZEFGYPrt1eR2e" \
+-d '{
+  "test": "forecast"
+}'
+
+
+curl -X POST http://54.81.53.245:11434/api/generate -d '{
+  "model": "qwen2.5:1.5b",
+  "prompt": "Apa itu kecerdasan buatan?",
+  "stream": false
+}'
