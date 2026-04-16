@@ -1,16 +1,16 @@
 
 
 
-curl -X POST https://fr570blv09.execute-api.us-east-1.amazonaws.com/prod/predictions \
+curl -X POST https://p1ee5gyqoc.execute-api.us-east-1.amazonaws.com/prod/predictions \
 -H "Content-Type: application/json" \
--H "x-api-key: XIbsc8w6uJaV8Qu8oU3jJ4fibkLM1vk2zQ95LKT7" \
+-H "x-api-key: GECxLh3BsM3KANgZZ8oFY9IgivSm8HYxZapaRNd9" \
 -d '{
   "test": "hello"
 }'
 
-curl -X POST https://fr570blv09.execute-api.us-east-1.amazonaws.com/prod/forecasts \
+curl -X POST https://p1ee5gyqoc.execute-api.us-east-1.amazonaws.com/prod/forecasts \
 -H "Content-Type: application/json" \
--H "x-api-key: XIbsc8w6uJaV8Qu8oU3jJ4fibkLM1vk2zQ95LKT7" \
+-H "x-api-key: GECxLh3BsM3KANgZZ8oFY9IgivSm8HYxZapaRNd9" \
 -d '{
   "test": "forecast"
 }'
@@ -24,17 +24,17 @@ curl -X POST http://18.234.243.5:11434/api/generate -d '{
 
 
 docker run -d -p 3000:3000 \
- -e API_PREDICTION=https://1t4mx2sx87.execute-api.us-east-1.amazonaws.com/prod/predict \
- -e API_FORECAST=https://1t4mx2sx87.execute-api.us-east-1.amazonaws.com/prod/forecasts \
- -e API_GATEWAY_KEY=bhDEJ0zLUe3kp8Jl0DQgU4rKBpNZEFGYPrt1eR2e \
+ -e API_PREDICTION=https://p1ee5gyqoc.execute-api.us-east-1.amazonaws.com/prod/predictions \
+ -e API_FORECAST=https://p1ee5gyqoc.execute-api.us-east-1.amazonaws.com/prod/forecasts \
+ -e API_GATEWAY_KEY=GECxLh3BsM3KANgZZ8oFY9IgivSm8HYxZapaRNd9 \
  ghcr.io/kaound3rage/lkscc2026v2:frontend-2026-04-11-10-48-47
 
 
 docker run -d -p 8080:8080 \
  -e LLM_PROVIDER=groq \
- -e GROQ_API_KEY=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 \
- -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:647127242402:NotificationMail \
+ -e GROQ_API_KEY=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 \
+ -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:581967380620:NotificationMail \
  -e LIST_SNS_TOPIC_ARN='{"ForecastingError":"/aws/lambda/Forecasting","PredictionError":"/aws/lambda/Prediction"}' \
- -e AWS_ACCESS_KEY_ID=ASIAZNK6KC2RBFFTJG3Z \
- -e AWS_SECRET_ACCESS_KEY=NERyYsBcwAnmmzoTOT+tqQiz0jUiVZvH8ZpYVJ33 \
+ -e AWS_ACCESS_KEY_ID=ASIAYO77VQCGINTZJTZW \
+ -e AWS_SECRET_ACCESS_KEY=xwdAbbs7gnWCMDUD9oemhElXEeF5S9khGa1T1KFM \
  ghcr.io/kaound3rage/lkscc2026v2:llm-webhook-2026-04-11-10-48-47

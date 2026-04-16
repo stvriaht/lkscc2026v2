@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "CloudWatch Alarms untuk Lambda Prediction & Forecasting"
+
+Parameters:
+  SNSTopicArn:
+    Type: String
+    Description: "ARN dari SNS Topic NotificationMail yang sudah dibuat"
+    Default: "arn:aws:sns:us-east-1:581967380620:NotificationMail"
+
+Resources:
+  PredictionErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: PredictionError
+      AlarmDescription: "Alarm aktif jika Lambda Prediction memiliki error > 0 dalam 1 menit"
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: Prediction
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref SNSTopicArn
+      OKActions:
+        - !Ref SNSTopicArn
+
+  ForecastingErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: ForecastingError
+      AlarmDescription: "Alarm aktif jika Lambda Forecasting memiliki error > 0 dalam 1 menit"
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: Forecasting
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref SNSTopicArn
+      OKActions:
+        - !Ref SNSTopicArn
+
+Outputs:
+  PredictionAlarmName:
+    Description: "Nama Prediction Error Alarm"
+    Value: !Ref PredictionErrorAlarm
+  
+  ForecastingAlarmName:
+    Description: "Nama Forecasting Error Alarm"
+    Value: !Ref ForecastingErrorAlarm

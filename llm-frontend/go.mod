@@ -1,4 +1,4 @@
-module lm-frontend
+module llm-frontend
 
 go 1.22
 

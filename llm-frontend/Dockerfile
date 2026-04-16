@@ -17,9 +17,10 @@ WORKDIR /app
 
 COPY --from=builder /app/lm-frontend .
 COPY templates/ templates/
+COPY .env .env 
 
 EXPOSE 3000
 
 ENV PORT=3000
 
-ENTRYPOINT ["./lm-frontend"]
+ENTRYPOINT ["./llm-frontend"]
